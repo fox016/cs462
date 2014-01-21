@@ -466,7 +466,6 @@ button.ui-button::-moz-focus-inner {
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: .2em;
 	outline: 0;
 }
 .ui-dialog .ui-dialog-titlebar {
@@ -500,7 +499,7 @@ button.ui-button::-moz-focus-inner {
 .ui-dialog .ui-dialog-buttonpane {
 	text-align: left;
 	border-width: 1px 0 0 0;
-	background-image: none;
+	background:#C8C8C8;
 	margin-top: .5em;
 	padding: .3em 1em .5em .4em;
 }
@@ -777,4 +776,16 @@ button.ui-button::-moz-focus-inner {
 }
 body .ui-tooltip {
 	border-width: 2px;
+}
+
+/* Stuff I added */
+.ui-widget-header
+{
+	background:#33496D;
+	color:white;
+}
+.ui-widget-content
+{
+	border: 2px solid #33496D;
+	background:white;
 }
