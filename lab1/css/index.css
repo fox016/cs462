@@ -1,0 +1,66 @@
+html,body
+{
+	height:100%;
+}
+body
+{
+	margin:0px;
+	padding:0px;
+}
+div#page
+{
+	height:100%;
+}
+table#pageTable
+{
+	width:100%;
+	height:100%;
+}
+div#pageHeader
+{
+	background:#33496d;
+	color:white;
+}
+table#headerTable
+{
+	width:100%
+}
+td#title
+{
+	padding:5px 20px;
+	font-size:14pt;
+}
+td#rightHeader
+{
+	padding:5px 20px;
+	float:right;
+}
+td#leftBar
+{
+	width:15%;
+	height:100%;
+	overflow:hidden;
+	background:rgb(200,200,200);
+	vertical-align:top;
+	padding:10px;
+}
+td#content
+{
+	width:85%;
+	height:100%;
+	overflow:hidden;
+	vertical-align:top;
+}
+button#createBtn
+{
+	width:100%;
+	background:rgb(245,238,210);
+	text-align:center;
+	cursor:pointer;
+	margin:0px auto;
+	font-size:12px;
+}
+table#actionTable
+{
+	width:100%;
+}
