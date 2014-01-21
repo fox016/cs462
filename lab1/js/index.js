@@ -49,8 +49,15 @@ function createAccount()
 			displayName: $("#newDisplayName").val(),
 			password: $("#newPassword").val(),
 		},
-		success: function() {
-			// TODO
+		success: function(data) {
+
+			if(data.substring(0,5) == "Error")
+			{
+				alert(data);
+				return;
+			}
+
+			$("#accountEditor").dialog("close");
 		},
 		error: function() {
 			// TODO

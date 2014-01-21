@@ -3,7 +3,7 @@
 	if($user != "")
 	{
 		$displayName = "Bob"; // TODO
-		$profileId = 1; // TODO
+		$email = 1; // TODO
 	}
 ?>
 
@@ -53,7 +53,7 @@
 								<?php
 								}else
 								{?>
-									<button id='createBtn' onclick='goToProfile("<?php echo $profileId;?>")'>My Profile</button>
+									<button id='createBtn' onclick='goToProfile("<?php echo $email;?>")'>My Profile</button>
 								<?php
 								}
 							?>	
