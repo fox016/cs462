@@ -219,11 +219,3 @@ function myAlert(msg)
 		],
 	});
 }
-
-/*
- * Page init
- */
-$(document).ready(function()
-{
-	getAllAccounts();
-});
