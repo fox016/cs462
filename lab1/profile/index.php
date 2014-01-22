@@ -3,10 +3,28 @@
 
 	$profile = $_GET['user'];
 	$current = $email;
-	$isOwner = $profile === $current;
+	$isOwner = $profile == $current;
 ?>
-	<div id='profileContent'>
-		<div id='profileTitle'>Profile: <?php echo $profile;?></div>
+	<div id='profileWrapper'>
+		<div id='profileContent'>
+			<div id='profileTitle'>Profile: <?php echo $profile;?></div>
+			<?php
+				if($isOwner && $oauth=="")
+				{?>
+					<div id='connectDiv'>
+						<button id='foursquareBtn' onclick='connectToFoursquare()'>Connect to Foursquare</button>
+					</div>
+				<?php
+				}
+				if(!$isOwner && $oauth=="")
+				{?>
+					<div id='connectErrorDiv'>
+						This user has not connected to Foursquare
+					</div>
+				<?php
+				}
+			?>
+		</div>
 	</div>
 </body>
 </html>

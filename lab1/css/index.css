@@ -87,15 +87,44 @@ table#allAccountsTable tbody tr:hover
 	background:#F5EED2;
 	cursor:pointer;
 }
+div#profileWrapper
+{
+	background:#F5EED2;
+	height:100%;
+}
 div#profileContent
 {
+	background:white;
+	width:60%;
+	margin:0px auto;
+	height:100%;
 }
 div#profileTitle
 {
-	margin-top:50px;
+	padding-top:50px;
 	margin-left:auto;
 	margin-right:auto;
 	text-align:center;
 	color:#C80A64;
 	font-size:20pt;
+}
+button#foursquareBtn
+{
+	height:100px;
+	width:300px;
+	font-size:18pt;
+	text-align:center;
+	margin:20px auto;
+}
+div#connectDiv
+{
+	width:100%;
+	text-align:center;
+}
+div#connectErrorDiv
+{
+	width:100%;
+	text-align:center;
+	padding-top:10px;
+	font-size:14pt;
 }

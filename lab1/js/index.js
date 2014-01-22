@@ -177,6 +177,11 @@ function getAllAccounts()
 	});
 }
 
+function connectToFoursquare()
+{
+	myAlert("TODO");
+}
+
 /*
  * Handles alerts
  */
