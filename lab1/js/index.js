@@ -46,7 +46,10 @@ function openSignIn()
  */
 function signIn()
 {
-	// TODO
+	$("#myForm").append("<input type='hidden' name='action' id='action' value='SIGN_IN'>");
+	$("#myForm").append("<input type='hidden' name='username' id='username' value='" + $("#signEmail").val() + "'>");
+	$("#myForm").append("<input type='hidden' name='password' id='password' value='" + $("#signPassword").val() + "'>");
+	$("#myForm").submit();
 }
 
 /*
@@ -54,7 +57,8 @@ function signIn()
  */
 function signOut()
 {
-	// TODO
+	$("#myForm").append("<input type='hidden' name='action' id='action' value='SIGN_OUT'>");
+	$("#myForm").submit();
 }
 
 /*

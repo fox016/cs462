@@ -64,9 +64,18 @@ table#actionTable
 {
 	width:100%;
 }
+div#accountTableLabel
+{
+	margin-top:20px;
+	margin-left:50px;
+	color:#C80A64;
+	font-size:20pt;
+}
 table#allAccountsTable
 {
-	margin:50px;
+	margin-left:50px;
+	margin-top:10px;
+	font-size:16pt;
 }
 table#allAccountsTable th
 {

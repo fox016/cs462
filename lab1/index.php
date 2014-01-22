@@ -1,14 +1,43 @@
 <?php
+	$user = "";
+	$loginFailed = FALSE;
 	$action = $_POST['action'];
+
+	// Sign In
 	if($action == "SIGN_IN")
 	{
+		require_once('/var/www/html/cs462/lab1/objects/Auth.php');
+		$account = signIn($_POST['username'], $_POST['password']);
+		if($account === NULL)
+		{
+			$loginFailed = TRUE;
+		}
+		else
+		{
+			$displayName = $account['displayName'];
+			$email = $account['email'];
+			$oauth = $account['oauth'];
+			$user = $email;
+		}
 	}
 
-	$user = $_COOKIE['lab_1_user'];
-	if($user != "")
+	// Sign Out
+	else if($action == "SIGN_OUT")
 	{
-		$displayName = "Bob"; // TODO
-		$email = 1; // TODO
+		require_once('/var/www/html/cs462/lab1/objects/Auth.php');
+		signOut();
+	}
+
+	// No Action
+	else
+	{
+		$user = $_COOKIE['lab_1_email'];
+		if($user != "")
+		{
+			$displayName = $_COOKIE['lab_1_display'];
+			$email = $_COOKIE['lab_1_email'];
+			$oauth = $_COOKIE['lab_1_oauth'];
+		}
 	}
 ?>
 
@@ -21,6 +50,12 @@
 	<script type='text/javascript' src='js/jquery-ui/js/jquery-1.10.2.js'></script>
 	<script type='text/javascript' src='js/jquery-ui/js/jquery-ui-1.10.4.custom.min.js'></script>
 	<script type='text/javascript' src='js/index.js'></script>
+	<?php
+		if($loginFailed){?>
+			<script type='text/javascript'>$(document).ready(function(){myAlert("Login Failed");});</script>
+		<?php
+		}
+	?>
 </head>
 <body>
 	<div id='pageHeader'>
@@ -102,7 +137,8 @@
 		<div id='myAlertText'></div>
 	</div>
 	<div id='allAccounts' style='display:none'>
-		<table id='allAccountsTable'>
+		<div id='accountTableLabel'>User Profiles</div>
+		<table id='allAccountsTable' cellspacing=0>
 			<thead>
 				<th>Display Name</th>
 				<th>Email</th>
@@ -111,5 +147,7 @@
 			</tbody>
 		</table>
 	</div>
+	<form name='myForm' id='myForm' method='POST'>
+	</form>
 </body>
 </html>

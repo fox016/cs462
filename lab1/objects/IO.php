@@ -2,11 +2,11 @@
 
 function readAccounts()
 {
-	$accountFile = "../files/accounts.json";
+	$accountFile = "/var/www/html/cs462/lab1/files/accounts.json";
 	$accounts = file_get_contents($accountFile);
 	if($accounts === FALSE)
 	{
-		echo "Error: Could not read from accounts file";
+		echo "Error: Could not read from accounts file: $accountFile";
 		die;
 	}
 	$accounts = json_decode($accounts, true);
@@ -20,7 +20,7 @@ function readAccounts()
 
 function writeAccounts($accounts)
 {
-	$accountFile = "../files/accounts.json";
+	$accountFile = "/var/www/html/cs462/lab1/files/accounts.json";
 	$success = file_put_contents($accountFile, json_encode($accounts));
 	if($success === FALSE)
 	{
