@@ -1,4 +1,9 @@
 <?php
+	$action = $_POST['action'];
+	if($action == "SIGN_IN")
+	{
+	}
+
 	$user = $_COOKIE['lab_1_user'];
 	if($user != "")
 	{
@@ -13,9 +18,9 @@
 	<title>Nathan Fox - Lab 1</title>
 	<link type='text/css' rel='stylesheet' href='css/index.css'>
 	<link type='text/css' rel='stylesheet' href='js/jquery-ui/css/no-theme/jquery-ui-1.10.4.custom.css'>
-	<script type='text/javascript' src='js/index.js'></script>
 	<script type='text/javascript' src='js/jquery-ui/js/jquery-1.10.2.js'></script>
 	<script type='text/javascript' src='js/jquery-ui/js/jquery-ui-1.10.4.custom.min.js'></script>
+	<script type='text/javascript' src='js/index.js'></script>
 </head>
 <body>
 	<div id='pageHeader'>
@@ -79,6 +84,31 @@
 				<td>Password:</td>
 				<td><input type=password id='newPassword'></td>
 			</tr>
+		</table>
+	</div>
+	<div id='signIn' style='display:none'>
+		<table>
+			<tr>
+				<td>Email:</td>
+				<td><input type=text id='signEmail'></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type=password id='signPassword'></td>
+			</tr>
+		</table>
+	</div>
+	<div id='myAlert' style='display:none'>
+		<div id='myAlertText'></div>
+	</div>
+	<div id='allAccounts' style='display:none'>
+		<table id='allAccountsTable'>
+			<thead>
+				<th>Display Name</th>
+				<th>Email</th>
+			</thead>
+			<tbody>
+			</tbody>
 		</table>
 	</div>
 </body>

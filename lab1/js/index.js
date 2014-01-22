@@ -1,3 +1,75 @@
+/*
+ * Opens sign in dialog
+ */
+function openSignIn()
+{
+	$("#signIn").dialog({
+		draggable: true,
+		title: "Sign In",
+		modal: true,
+		width: 300,
+		height: 200,
+		resizable: false,
+		open: function()
+		{
+			$("#signEmail").val("");
+			$("#signPassword").val("");
+		},
+		close: function()
+		{
+			$(this).dialog("destroy");
+		},
+		buttons:
+		[
+			{
+				text: "Sign In",
+				id: "signInBtn",
+				click: function()
+				{
+					signIn();
+				}
+			},
+			{
+				text: "Cancel",
+				id: "cancelBtn",
+				click: function()
+				{
+					$(this).dialog("close");
+				},
+			},
+		],
+	});
+}
+
+/*
+ * Attempts to sign in using data from UI
+ */
+function signIn()
+{
+	// TODO
+}
+
+/*
+ * Clears cookie and refreshes page
+ */
+function signOut()
+{
+	// TODO
+}
+
+/*
+ * Navigates to profile of user defined by email
+ */
+function goToProfile(email)
+{
+	newLoc = location.protocol + '//' + location.host + "/cs462/lab1/profile/?user=" + encodeURIComponent(email);
+	console.log(newLoc);
+	window.location.href = newLoc;
+}
+
+/*
+ * Opens account editor dialog
+ */
 function openAccountEditor()
 {
 	$("#accountEditor").dialog({
@@ -39,6 +111,9 @@ function openAccountEditor()
 	});
 }
 
+/*
+ * Calls AJAX script to create account using data from UI
+ */
 function createAccount()
 {
 	$.ajax({
@@ -53,14 +128,98 @@ function createAccount()
 
 			if(data.substring(0,5) == "Error")
 			{
-				alert(data);
+				myAlert(data);
 				return;
 			}
 
 			$("#accountEditor").dialog("close");
+			getAllAccounts();
 		},
 		error: function() {
-			// TODO
+			myAlert("There was an error creating the account. Please refresh the page and try again");
 		},
 	});
 }
+
+/*
+ * Gets publicly visible account data to make table
+ */
+function getAllAccounts()
+{
+	$.ajax({
+		type: 'POST',	
+		url: 'ajax/getAccounts.php',
+		data: {
+		},
+		success: function(data) {
+
+			if(data.substring(0,5) == "Error")
+			{
+				myAlert(data);
+				return;
+			}
+
+			var accounts = JSON.parse(data);
+			$("#allAccountsTable tbody").html("");
+			for(var i = 0; i < accounts.length; i++)
+			{
+				$("#allAccountsTable tbody").append("<tr onclick='goToProfile(\"" + accounts[i]['email'] + "\")'><td>" + accounts[i]['displayName'] + "</td><td>" + accounts[i]['email'] + "</td></tr>");
+			}
+			$("#content").html($("#allAccounts").html());
+		},
+		error: function() {
+			myAlert("There was an error reading the accounts. Please refresh the page and try again");
+		},
+	});
+}
+
+/*
+ * Handles alerts
+ */
+var alertQueue = [];
+var alertFlag = false;
+function myAlert(msg)
+{
+	if(alertFlag)
+	{
+		alertQueue.push(msg);
+		return;
+	}
+	alertFlag = true; // Set lock
+
+	$("#myAlertText").html(msg);
+	$("#myAlert").dialog({
+		title: "Alert",
+		resizable: true,
+		modal: true,
+		height: 200,
+		close: function()
+		{
+			$(this).dialog("destroy");
+			alertFlag = false; // Release lock
+			if(alertQueue.length > 0)
+			{
+				myAlert(alertQueue.shift());
+			}
+		},
+		buttons:
+		[
+			{
+				text: "Close",
+				id: "cancelBtn",
+				click: function()
+				{
+					$(this).dialog("close");
+				},
+			},
+		],
+	});
+}
+
+/*
+ * Page init
+ */
+$(document).ready(function()
+{
+	getAllAccounts();
+});

@@ -23,7 +23,16 @@ if(strlen($password) < 8 || strlen($password) > 40)
 }
 
 // Read account data from file
+require_once('../objects/IO.php');
+$accounts = readAccounts();
 
 // Append to account data
+$account = array();
+$account['email'] = $email;
+$account['displayName'] = $displayName;
+$account['password'] = $password;
+$account['oauth'] = "";
+$accounts['Accounts'][] = $account;
 
 // Save account data to file
+writeAccounts($accounts);

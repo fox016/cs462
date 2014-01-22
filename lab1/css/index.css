@@ -64,3 +64,17 @@ table#actionTable
 {
 	width:100%;
 }
+table#allAccountsTable
+{
+	margin:50px;
+}
+table#allAccountsTable th
+{
+	text-align:left;
+	padding-right:40px;
+}
+table#allAccountsTable tbody tr:hover
+{
+	background:#F5EED2;
+	cursor:pointer;
+}
