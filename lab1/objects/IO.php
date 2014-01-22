@@ -29,3 +29,32 @@ function writeAccounts($accounts)
 	}
 }
 
+function setToken($email, $token)
+{
+	$accounts = readAccounts();
+	$index = 0;
+	$found = FALSE;
+	foreach($accounts['Accounts'] as $acc)
+	{
+		if($acc['email'] == $email)
+		{
+			$found = TRUE;
+			break;
+		}
+		$index++;
+	}
+	if(!$found) return;
+	$accounts['Accounts'][$index]['oauth'] = $token;
+	writeAccounts($accounts);
+}
+
+function getToken($email)
+{
+	$accounts = readAccounts();
+	foreach($accounts['Accounts'] as $acc)
+	{
+		if($acc['email'] == $email)
+			return $acc['oauth'];
+	}
+	return "";
+}

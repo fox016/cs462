@@ -29,6 +29,7 @@ td#title
 {
 	padding:5px 20px;
 	font-size:14pt;
+	cursor:pointer;
 }
 td#rightHeader
 {
@@ -122,6 +123,20 @@ div#connectDiv
 	text-align:center;
 }
 div#connectErrorDiv
+{
+	width:100%;
+	text-align:center;
+	padding-top:10px;
+	font-size:14pt;
+}
+div#userCheckinDiv
+{
+	width:100%;
+	text-align:center;
+	padding-top:10px;
+	font-size:14pt;
+}
+div#otherCheckinDiv
 {
 	width:100%;
 	text-align:center;

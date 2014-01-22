@@ -72,6 +72,14 @@ function goToProfile(email)
 }
 
 /*
+ * Navigates to home
+ */
+function goHome()
+{
+	window.location.href = location.protocol + '//' + location.host + "/cs462/lab1/";
+}
+
+/*
  * Opens account editor dialog
  */
 function openAccountEditor()
@@ -177,9 +185,15 @@ function getAllAccounts()
 	});
 }
 
+/*
+ * Connects user to Foursquare
+ */
 function connectToFoursquare()
 {
-	myAlert("TODO");
+	window.location.href = "https://foursquare.com/oauth2/authenticate?" +
+				"client_id=F2GWQRS2WTWV3YRD5OEHZQGKDIKYWQX1EJ3QZNTBBGFXUK1B" +
+				"&response_type=code&redirect_uri=" +
+				encodeURIComponent("http://ec2-54-224-121-158.compute-1.amazonaws.com/cs462/lab1/");
 }
 
 /*
