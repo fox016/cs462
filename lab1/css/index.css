@@ -143,3 +143,25 @@ div#otherCheckinDiv
 	padding-top:10px;
 	font-size:14pt;
 }
+table.checkinTable
+{
+	margin:0px auto;
+	border:2px solid #C8C8C8;
+	margin-bottom:20px;
+	border-collapse:collapse;
+}
+table.checkinTable th
+{
+	text-align:left;
+	padding:2px 20px 2px 10px;
+	border:2px solid #C8C8C8;
+	background:#33496D;
+	color:white;
+	font-weight:normal;
+}
+table.checkinTable td
+{
+	text-align:left;
+	padding:2px 20px 2px 10px;
+	border:2px solid #C8C8C8;
+}

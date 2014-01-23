@@ -58,3 +58,40 @@ function getToken($email)
 	}
 	return "";
 }
+
+function getDetailedCheckin($data)
+{
+	$output = array();
+	$output['checkins'] = array();
+	$output['count'] = $data['response']['checkins']['count'];
+	foreach($data['response']['checkins']['items'] as $check)
+	{
+		$item = array();
+		$item['time'] = date("m-d-Y g:i A", $check['createdAt']);
+		$item['venueName'] = $check['venue']['name'];
+		$item['venueAddress'] = $check['venue']['location']['address'];
+		$item['venueCity'] = $check['venue']['location']['city'];
+		$item['venueState'] = $check['venue']['location']['state'];
+		$item['visitCount'] = $check['venue']['beenHere']['count'];
+		$output['checkins'][] = $item;
+	}
+	return $output;
+}
+
+function getLimitedCheckin($data)
+{
+	$output = array();
+	$output['checkins'] = array();
+	$output['count'] = min(1, $data['response']['checkins']['count']);
+	foreach($data['response']['checkins']['items'] as $check)
+	{
+		$item = array();
+		$item['time'] = date("m-d-Y", $check['createdAt']);
+		$item['venueName'] = $check['venue']['name'];
+		$item['venueCity'] = $check['venue']['location']['city'];
+		$item['venueState'] = $check['venue']['location']['state'];
+		$output['checkins'][] = $item;
+		break;
+	}
+	return $output;
+}
