@@ -6,7 +6,7 @@ ruleset NotificationApp {
     }
     global {
 	getName = function(urlStr) {
-		urlStr.split(re/&/).filter(function(pair) {pair.match(re/name/)}).head().replace(re/name=/, "")
+		urlStr.split(re/&/).filter(function(pair) {pair.match(re/(^name)/)}).head().replace(re/name=/, "")
 	}
     }
     rule firstNotification {
