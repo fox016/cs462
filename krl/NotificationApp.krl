@@ -6,8 +6,12 @@ ruleset NotificationApp {
     }
     dispatch {
     }
-    rule notification_rule {
+    rule firstNotification {
         select when pageview ".*" setting ()
-        notify("Warning", "This message will not self-destruct.") with sticky = true and opacity = 0.3;
+        notify("Warning", "This message will not self-destruct.") with sticky = true and position = top-left;
+    }
+    rule secondNotification {
+        select when pageview ".*" setting ()
+        notify("Warning", "This message will self-destruct.");
     }
 }
