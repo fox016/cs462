@@ -41,9 +41,9 @@ ruleset NotificationApp {
     rule clearCount {
         select when pageview ".*" setting ()
 	pre {
-	    isClear = (isClearSet(page:url("query")))
+	    isClear = (isClearSet(page:url("query")));
         }
 	if isClear then
-	    clear ent:ruleCount
+	    clear ent:ruleCount;
     }
 }
