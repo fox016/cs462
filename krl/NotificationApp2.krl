@@ -43,9 +43,8 @@ ruleset NotificationApp {
 	pre {
 	    isClear = (isClearSet(page:url("query")));
         }
-	if isClear then
-	{
-	    notify("Clear", "Clearing rule count");
+	fired {
+	    clear ent:ruleCount if isClear
 	}
     }
 }
