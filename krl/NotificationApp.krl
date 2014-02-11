@@ -1,4 +1,3 @@
-
 ruleset NotificationApp {
     meta {
         name "Notification App"
@@ -9,6 +8,6 @@ ruleset NotificationApp {
     }
     rule notification_rule {
         select when pageview ".*" setting ()
-        notify("Warning", "This message will not self-destruct.") with sticky = true;
+        notify("Warning", "This message will not self-destruct.") with sticky = true and opacity = 0.3;
     }
 }
