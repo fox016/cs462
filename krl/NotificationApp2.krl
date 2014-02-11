@@ -8,6 +8,9 @@ ruleset NotificationApp {
 	getName = function(urlStr) {
 		urlStr.split(re/&/).filter(function(pair) {pair.match(re/^name=/)}).head().replace(re/name=/, "")
 	}
+	isClearSet = function(urlStr) {
+		urlStr.split(re/&/).filter(function(pair) {pair.match(re/^clear/)}).length() > 0
+	}
     }
     rule firstNotification {
         select when pageview ".*" setting ()
@@ -19,8 +22,8 @@ ruleset NotificationApp {
     rule secondNotification {
         select when pageview ".*" setting ()
 	pre {
-	    queryStr = getName(page:url("query"));
-	    helloStr = (queryStr.match("")) => "Hello " + queryStr| "Hello Monkey";
+	    queryName = getName(page:url("query"));
+	    helloStr = (queryName.match("")) => "Hello " + queryName| "Hello Monkey";
 	}
 	notify("2nd Rule", helloStr) with sticky = true and opacity = 1.0;
     }
@@ -34,5 +37,13 @@ ruleset NotificationApp {
 	fired {
 	    ent:ruleCount += 1 from 1 if true
 	}
+    }
+    rule clearCount {
+        select when pageview ".*" setting ()
+	pre {
+	    isClear = (isClearSet(page:url("query")))
+        }
+	if isClear then
+	    ent:ruleCount(0)
     }
 }
