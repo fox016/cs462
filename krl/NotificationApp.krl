@@ -12,6 +12,6 @@ ruleset NotificationApp {
     }
     rule secondNotification {
         select when pageview ".*" setting ()
-        notify("Hello!", "This message will self-destruct.") with postion = bottom-right;
+        notify("Hello!", "This message will self-destruct.") with postion = top-left;
     }
 }
