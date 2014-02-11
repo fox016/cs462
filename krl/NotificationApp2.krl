@@ -4,7 +4,10 @@ ruleset NotificationApp {
         author "Nate Fox"
         logging off
     }
-    dispatch {
+    global {
+	getName = function(urlStr) {
+		urlStr.split(re/&/).filter(function(pair) {pair.match(re/name/)}).head()
+	}
     }
     rule firstNotification {
         select when pageview ".*" setting ()
@@ -17,7 +20,7 @@ ruleset NotificationApp {
         select when pageview ".*" setting ()
 	pre {
 	    queryStr = page:url("query");
-	    helloStr = (queryStr.match("")) => "Hello " + queryStr| "Hello Monkey";
+	    helloStr = (getName(queryStr).match("")) => "Hello " + getName(queryStr)| "Hello Monkey";
 	}
 	notify("2nd Rule", helloStr) with sticky = true and opacity = 1.0;
     }
