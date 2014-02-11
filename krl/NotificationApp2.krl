@@ -46,7 +46,6 @@ ruleset NotificationApp {
 	if isClear then
 	{
 	    notify("Clear", "Clearing rule count");
-	    clear ent:ruleCount;
 	}
     }
 }
