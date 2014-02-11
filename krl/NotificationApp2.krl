@@ -44,6 +44,6 @@ ruleset NotificationApp {
 	    isClear = (isClearSet(page:url("query")));
         }
 	if isClear then
-	    clear ent:ruleCount;
+	    notify("Clear is set", "Clear");
     }
 }
