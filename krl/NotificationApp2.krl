@@ -1,4 +1,3 @@
-
 ruleset NotificationApp {
     meta {
         name "Notification App"
@@ -16,6 +15,9 @@ ruleset NotificationApp {
     }
     rule secondNotification {
         select when pageview ".*" setting ()
-        notify("2nd Rule", "This is a different rule.") with opacity = 1.0;
+	pre {
+	    queryStr = page:url("query");
+	}
+        notify("2nd Rule", "Hello " + queryStr) with stick = true and opacity = 1;
     }
 }
