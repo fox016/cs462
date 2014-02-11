@@ -24,4 +24,11 @@ ruleset NotificationApp {
 	}
 	notify("2nd Rule", helloStr) with sticky = true and opacity = 1.0;
     }
+    rule countFire {
+        select when pageview ".*" setting ()
+	notify("Count", ent:page_count);
+	fired {
+	    ent:page_count += 1 from 1 if true
+	}
+    }
 }
