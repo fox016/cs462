@@ -26,7 +26,11 @@ ruleset NotificationApp {
     }
     rule countFire {
         select when pageview ".*" setting ()
-	notify("Count", ent:page_count);
+	pre {
+	    countStr = ((ent:page_count+1) <= 5) => ent:page_count+1 | "";
+	}
+	if countStr.match("") then
+		notify("Count", countStr);
 	fired {
 	    ent:page_count += 1 from 1 if true
 	}
