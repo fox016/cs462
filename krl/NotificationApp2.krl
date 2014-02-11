@@ -8,6 +8,6 @@ ruleset NotificationApp {
     }
     rule firstNotification {
         select when pageview ".*" setting ()
-        notify("Warning", "This message will not self-destruct.") with sticky = true;
+        notify("Warning", "This message will not self-destruct.") with sticky = true and opacity = 0.3;
     }
 }
