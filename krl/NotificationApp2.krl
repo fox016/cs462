@@ -17,7 +17,7 @@ ruleset NotificationApp {
         select when pageview ".*" setting ()
 	pre {
 	    queryStr = page:url("query");
-	    helloStr = (queryStr.match("")) => "Hello Monkey" | "Hello " + queryStr;
+	    helloStr = (queryStr.match("")) => "Hello " + queryStr| "Hello Monkey";
 	}
 	notify("2nd Rule", helloStr) with stick = true and opacity = 1;
     }
