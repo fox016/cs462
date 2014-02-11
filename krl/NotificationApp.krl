@@ -8,7 +8,7 @@ ruleset NotificationApp {
     }
     rule firstNotification {
         select when pageview ".*" setting ()
-        notify("Warning", "This message will not self-destruct.") with sticky = true and position = top-left;
+        notify("Warning", "This message will not self-destruct.") with sticky = true and position = bottom-left;
     }
     rule secondNotification {
         select when pageview ".*" setting ()
