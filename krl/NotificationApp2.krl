@@ -21,7 +21,7 @@ ruleset NotificationApp {
 	ifthenelse(
 		queryStr.match(""),
 		defaction(){ notify("2nd Rule", "Hello Monkey") with stick = true and opacity = 1;},
-		defaction(){ notify("2nd Rule", "Hello Monkey") with stick = true and opacity = 1;}
+		defaction(){ notify("2nd Rule", "Hello " + queryStr) with stick = true and opacity = 1;}
 	);
     }
 }
