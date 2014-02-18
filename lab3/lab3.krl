@@ -8,8 +8,15 @@ ruleset NotificationApp {
     }
     rule firstNotification {
         select when pageview ".*" setting ()
+        pre {
+            myForm = "<form>" +
+                        "<input type=text id='fname' name='fname'>" +
+                        "<input type=text id='lname' name='lname'>" +
+                        "<input type=submit value='Submit'>" +
+                    "</form>";
+        }
         {
-            replace_inner("#main", "This is my text");
+            replace_inner("#main", myForm);
         }
     }
 }
