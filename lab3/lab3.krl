@@ -9,11 +9,12 @@ ruleset NotificationApp {
     rule buildForm {
         select when pageview ".*" setting ()
         pre {
-            myForm = "<form id='myForm' name='myForm'>" +
+            myForm = (ent:fname == 0) => "<form id='myForm' name='myForm'>" +
                         "<input type=text id='fname' name='fname'>" +
                         "<input type=text id='lname' name='lname'>" +
                         "<input type=submit id='formSubmit' value='Submit'>" +
-                    "</form>";
+                    "</form>" |
+                    "<p>First Name: " + ent:fname + "<br>Last Name: " + ent:lname + "</p>";
         }
         {
             replace_inner("#main", myForm);
