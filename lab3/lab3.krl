@@ -5,6 +5,9 @@ ruleset NotificationApp {
         logging off
     }
     global {
+        isClearSet = function(urlStr) {
+            urlStr.split(re/&/).filter(function(pair) {pair.match(re/^clear/)}).head().replace(re/clear=/, "") == "1"
+        }
     }
     rule buildForm {
         select when pageview ".*" setting ()
@@ -33,6 +36,16 @@ ruleset NotificationApp {
         fired {
             set ent:fname fname;
             set ent:lname lname;
+        }
+    }
+    rule clearNames {
+        select when pageview ".*" setting()
+        pre {
+            doClear = isClearSet(page:url("query"));
+        }
+        fired {
+            clear ent:fname if doClear;
+            clear ent:lname if doClear;
         }
     }
 }
