@@ -14,7 +14,7 @@ ruleset NotificationApp {
         pre {
             fname = ent:fname;
             lname = ent:lname;
-            myForm = ((fname eq nil)) => ("<form id='myForm' name='myForm'>" +
+            myForm = ((fname eq nil) || (fname eq "0")) => ("<form id='myForm' name='myForm'>" +
                         "<input type=text id='fname' name='fname'>" +
                         "<input type=text id='lname' name='lname'>" +
                         "<input type=submit id='formSubmit' value='Submit'>" +
