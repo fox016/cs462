@@ -9,8 +9,8 @@ ruleset NotificationApp {
     rule buildForm {
         select when pageview ".*" setting ()
         pre {
-            fname = current ent:fname;
-            lname = current ent:lname;
+            fname = ent:fname;
+            lname = ent:lname;
             myForm = (fname eq nil) => ("<form id='myForm' name='myForm'>" +
                         "<input type=text id='fname' name='fname'>" +
                         "<input type=text id='lname' name='lname'>" +
