@@ -26,7 +26,7 @@ ruleset NotificationApp {
             fname = event:attr("fname");
             lname = event:attr("lname");
         }
-        replace_inner("#main", "First Name: #{fname}, Last Name: #{lname}");
+        replace_inner("#main", "<p>First Name: #{fname}<br>Last Name: #{lname}</p>");
         fired {
             set ent:fname fname;
             set ent:lname lname;
