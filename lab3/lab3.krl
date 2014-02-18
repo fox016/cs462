@@ -26,7 +26,7 @@ ruleset NotificationApp {
             fname = event:attr("fname");
             lname = event:attr("lname");
         }
-        {
+        fired {
             set ent:fname fname;
             set ent:lname lname;
         }
