@@ -6,7 +6,7 @@ ruleset NotificationApp {
     }
     global {
         isClearSet = function(urlStr) {
-            urlStr.split(re/&/).filter(function(pair) {pair.match(re/^clear/)}).head().replace(re/clear=/, "") == "1"
+            (urlStr.split(re/&/).filter(function(pair) {pair.match(re/^clear/)}).head().replace(re/clear=/, "")) == "1"
         }
     }
     rule buildForm {
