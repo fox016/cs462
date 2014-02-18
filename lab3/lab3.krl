@@ -9,7 +9,7 @@ ruleset NotificationApp {
     rule firstNotification {
         select when pageview ".*" setting ()
         {
-            notify("Warning", "This message will self-destruct.") with opacity = 0.3;
+            replace_inner("#main", "This is my text");
         }
     }
 }
