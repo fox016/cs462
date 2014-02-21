@@ -41,7 +41,9 @@ ruleset NotificationApp {
         select when web submit "#movieForm"
         pre {
             movieName = event:attr("movieName");
+            movieResponse = findMovie(movieName);
+            responseHtml = "<div id='movieData'>" + movieResponse + "</div>";
         }
-         replace_inner("#dynamicContent", findMovie(movieName));
+         replace_inner("#dynamicContent", responseHtml);
     }
 }
