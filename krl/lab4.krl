@@ -34,6 +34,7 @@ ruleset NotificationApp {
         {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Lab 4 - Rotten Tomatoes", {}, movieFormHtml);
+            watch("#movieForm", "submit");
         }
     }
     rule submitForm {
