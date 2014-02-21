@@ -23,12 +23,12 @@ ruleset NotificationApp {
         pre {
             movieFormHtml = <<
                 <div id='dynamicContent'>
-                    <form id='movieForm' name='movieForm'>
-                        <label for='movieName'>Movie Name:</label>
-                        <input type=text id='movieName' name='movieName'>
-                        <input type=submit value='Search'>
-                    </form>
                 </div>
+                <form id='movieForm' name='movieForm'>
+                    <label for='movieName'>Movie Name:</label>
+                    <input type=text id='movieName' name='movieName'>
+                    <input type=submit value='Search'>
+                </form>
             >>;
         }
         {
