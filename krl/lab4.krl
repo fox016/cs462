@@ -1,51 +1,39 @@
 ruleset NotificationApp {
     meta {
-        name "Notification App"
+        name "Lab 4 - Rotten Tomatoes"
+        description <<
+            Rotten Tomatoes App
+        >>
         author "Nate Fox"
         logging off
+        use module a169x701 alias CloudRain
+        use module a41x186  alias SquareTag
     }
     global {
         isClearSet = function(urlStr) {
             (urlStr.split(re/&/).filter(function(pair) {pair.match(re/^clear/)}).head().replace(re/clear=/, "")) == "1"
         }
     }
-    rule buildForm {
-        select when pageview ".*" setting ()
+    rule buildForm is active {
+        select when web cloudAppSelected
         pre {
-            fname = ent:fname;
-            lname = ent:lname;
-            myForm = ((fname eq nil) || (fname eq "0")) => ("<form id='myForm' name='myForm'>" +
-                        "<input type=text id='fname' name='fname'>" +
-                        "<input type=text id='lname' name='lname'>" +
-                        "<input type=submit id='formSubmit' value='Submit'>" +
-                    "</form>") |
-                    ("<p>First Name: " + fname + "<br>Last Name: " + lname + "</p>");
+            movieFormHtml = <<
+                <form id='movieForm' name='movieForm'>
+                    <label for='movieName'>Movie Name:</label>
+                    <input type=text id='movieName' name='movieName'>
+                </form>
+            >>;
         }
         {
-            replace_inner("#main", myForm);
-            watch("#myForm", "submit");
+            SquareTag:inject_styling();
+            CloudRain:createLoadPanel("Lab 4 - Rotten Tomatoes", {}, movieFormHtml);
         }
     }
     rule submitForm {
-        select when web submit "#myForm"
+        select when web submit "#movieForm"
         pre {
-            fname = event:attr("fname");
-            lname = event:attr("lname");
+            movieName = event:attr("movieName");
         }
-        replace_inner("#main", "<p>First Name: #{fname}<br>Last Name: #{lname}</p>");
-        fired {
-            set ent:fname fname;
-            set ent:lname lname;
-        }
-    }
-    rule clearNames {
-        select when pageview ".*" setting()
-        pre {
-            doClear = isClearSet(page:url("query"));
-        }
-        fired {
-            clear ent:fname if doClear;
-            clear ent:lname if doClear;
-        }
+        noop()
     }
 }
