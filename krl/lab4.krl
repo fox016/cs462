@@ -10,19 +10,25 @@ ruleset NotificationApp {
         use module a41x186  alias SquareTag
     }
     global {
-        isClearSet = function(urlStr) {
-            (urlStr.split(re/&/).filter(function(pair) {pair.match(re/^clear/)}).head().replace(re/clear=/, "")) == "1"
+        findMovie = function(movieName) {
+            http:get("http://api.rottentomatoes.com/api/public/v1.0/movies.json",
+                    {"apikey": "gv2fpjtntpzg92rkmz7f53er",
+                     "q": movieName
+                    }
+                    );
         }
     }
     rule buildForm is active {
         select when web cloudAppSelected
         pre {
             movieFormHtml = <<
-                <form id='movieForm' name='movieForm'>
-                    <label for='movieName'>Movie Name:</label>
-                    <input type=text id='movieName' name='movieName'>
-                    <input type=submit value='Search'>
-                </form>
+                <div id='dynamicContent'>
+                    <form id='movieForm' name='movieForm'>
+                        <label for='movieName'>Movie Name:</label>
+                        <input type=text id='movieName' name='movieName'>
+                        <input type=submit value='Search'>
+                    </form>
+                </div>
             >>;
         }
         {
@@ -35,6 +41,6 @@ ruleset NotificationApp {
         pre {
             movieName = event:attr("movieName");
         }
-        noop()
+         replace_inner("#dynamicContent", findMovie(movieName));
     }
 }
