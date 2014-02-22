@@ -22,9 +22,9 @@ ruleset NotificationApp {
         select when web cloudAppSelected
         pre {
             movieFormHtml = <<
-                <div id='dynamicContent'>
+                <div id='dynamicContent' style='padding-left:20px'>
                 </div>
-                <form id='movieForm' name='movieForm'>
+                <form id='movieForm' name='movieForm' style='padding-left:20px;padding-top:20px'>
                     <label for='movieName'>Movie Name:</label>
                     <input type=text id='movieName' name='movieName'>
                     <input type=submit value='Search'>
