@@ -43,11 +43,19 @@ ruleset NotificationApp {
             movieName = event:attr("movieName");
             movieResponse = findMovie(movieName);
             total = movieResponse.pick("$.total");
+            thumbUrl = movieResponse.pick("$.movies[0].posters.thumbnail");
             title = movieResponse.pick("$.movies[0].title");
+            year = movieResponse.pick("$.movies[0].year");
+            synopsis = movieResponse.pick("$.movies[0].synopsis");
+            criticScore = movieResponse.pick("$.movies[0].ratings.critics_score");
             responseHtml = "<div id='movieData'>" +
                                 "Result Count: " + total +
                                 "<table id='movieTable'>" +
+                                    "<tr><th>Thumbnail</th><td><img src='" + thumbUrl + "'></td></tr>" +
                                     "<tr><th>Title</th><td>" + title + "</td></tr>" +
+                                    "<tr><th>Release Year</th><td>" + year + "</td></tr>" +
+                                    "<tr><th>Synopsis</th><td>" + synopsis + "</td></tr>" +
+                                    "<tr><th>Critic Ratings</th><td>" + criticScore + "</td></tr>" +
                                 "</table>" +
                             "</div>";
         }
