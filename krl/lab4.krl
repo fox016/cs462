@@ -45,6 +45,6 @@ ruleset NotificationApp {
             title = movieResponse.pick("$.movies[0].title");
             responseHtml = "<div id='movieData'>Title: " + title[0] + "</div>";
         }
-         replace_inner("#dynamicContent", responseHtml);
+         replace_inner("#dynamicContent", movieResponse);
     }
 }
