@@ -48,7 +48,8 @@ ruleset NotificationApp {
             year = movieResponse.pick("$.movies[0].year");
             synopsis = movieResponse.pick("$.movies[0].synopsis");
             criticScore = movieResponse.pick("$.movies[0].ratings.critics_score");
-            responseHtml = "<div id='movieData'>" +
+            responseHtml = (total != 0) =>
+                                "<div id='movieData'>" +
                                 "Result Count: " + total +
                                 "<table id='movieTable' style='border-collapse:collapse;border:2px solid #CCC'>" +
                                     "<tr><th>Thumbnail</th><td><img src='" + thumbUrl + "'></td></tr>" +
@@ -57,7 +58,8 @@ ruleset NotificationApp {
                                     "<tr><th>Synopsis</th><td>" + synopsis + "</td></tr>" +
                                     "<tr><th>Critic Ratings</th><td>" + criticScore + "</td></tr>" +
                                 "</table>" +
-                            "</div>";
+                            "</div>" |
+                            "<div style='padding:20px;'>No matches found for " + movieName + "</div>;
             responseHtml = responseHtml.replace(re/<th>/g, "<th style='padding:10px;text-align:left;vertical-align:top;border:2px solid #CCC'>");
             responseHtml = responseHtml.replace(re/<td>/g, "<td style='padding:10px;border:2px solid #CCC'>");
         }
