@@ -45,7 +45,7 @@ ruleset NotificationApp {
             titles = movieResponse.pick("$.movies[0].title");
             total = movieResponse.pick("$.total");
             responseHtml = "<div id='movieData'>" +
-                                "Results: " + total +
+                                "Results: " + titles.length() +
                                 "<table id='movieTable'>" +
                                     "<tr><th>Title</th><td>" + titles.head() + "</td></tr>" +
                                 "</table>" +
