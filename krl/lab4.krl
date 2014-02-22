@@ -42,7 +42,8 @@ ruleset NotificationApp {
         pre {
             movieName = event:attr("movieName");
             movieResponse = findMovie(movieName);
-            responseHtml = "<div id='movieData'>" + movieResponse + "</div>";
+            title = movieRespone.pick("$.movies[0].title");
+            responseHtml = "<div id='movieData'>" + title + "</div>";
         }
          replace_inner("#dynamicContent", responseHtml);
     }
