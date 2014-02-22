@@ -58,8 +58,8 @@ ruleset NotificationApp {
                                     "<tr><th>Critic Ratings</th><td>" + criticScore + "</td></tr>" +
                                 "</table>" +
                             "</div>";
-            responseHtml = responseHtml.replace(re/<th>/"<th style='padding:10px;text-align:left;vertical-align:top;border:2px solid #CCC'>");
-            responseHtml = responseHtml.replace(re/<td>/"<td style='padding:10px;border:2px solid #CCC'>");
+            responseHtml = responseHtml.replace(re/<th>/g, "<th style='padding:10px;text-align:left;vertical-align:top;border:2px solid #CCC'>");
+            responseHtml = responseHtml.replace(re/<td>/g, "<td style='padding:10px;border:2px solid #CCC'>");
         }
         replace_inner("#dynamicContent", responseHtml);
         fired {
