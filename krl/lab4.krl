@@ -43,11 +43,11 @@ ruleset NotificationApp {
             movieName = event:attr("movieName");
             movieResponse = findMovie(movieName);
             total = movieResponse.pick("$.total");
-            titles = movieResponse.pick("$.movies.title");
+            title = movieResponse.pick("$.movies[0].title");
             responseHtml = "<div id='movieData'>" +
-                                "Results: " + total +
+                                "Result Count: " + total +
                                 "<table id='movieTable'>" +
-                                    "<tr><th>Title</th><td>" + titles.head() + "</td></tr>" +
+                                    "<tr><th>Title</th><td>" + title + "</td></tr>" +
                                 "</table>" +
                             "</div>";
         }
