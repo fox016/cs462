@@ -15,7 +15,7 @@ ruleset NotificationApp {
                     {"apikey": "gv2fpjtntpzg92rkmz7f53er",
                      "q": movieName
                     }
-                    ).pick("$.content").decode();
+                    ).pick("$.content");
         }
     }
     rule buildForm is active {
