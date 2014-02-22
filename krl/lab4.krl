@@ -45,12 +45,15 @@ ruleset NotificationApp {
             titles = movieResponse.pick("$.movies[0].title");
             total = movieResponse.pick("$.total");
             responseHtml = "<div id='movieData'>" +
-                                "Results: " + titles.length() +
+                                "Results: " + total.head() +
                                 "<table id='movieTable'>" +
                                     "<tr><th>Title</th><td>" + titles.head() + "</td></tr>" +
                                 "</table>" +
                             "</div>";
         }
-         replace_inner("#dynamicContent", responseHtml);
+        replace_inner("#dynamicContent", responseHtml);
+        fired {
+            log movieResponse;
+        }
     }
 }
