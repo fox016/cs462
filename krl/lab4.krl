@@ -50,7 +50,7 @@ ruleset NotificationApp {
             criticScore = movieResponse.pick("$.movies[0].ratings.critics_score");
             responseHtml = "<div id='movieData'>" +
                                 "Result Count: " + total +
-                                "<table id='movieTable'>" +
+                                "<table id='movieTable' style='border-collapse:collapse;border:2px solid #CCC'>" +
                                     "<tr><th>Thumbnail</th><td><img src='" + thumbUrl + "'></td></tr>" +
                                     "<tr><th>Title</th><td>" + title + "</td></tr>" +
                                     "<tr><th>Release Year</th><td>" + year + "</td></tr>" +
@@ -58,6 +58,8 @@ ruleset NotificationApp {
                                     "<tr><th>Critic Ratings</th><td>" + criticScore + "</td></tr>" +
                                 "</table>" +
                             "</div>";
+            responseHtml = responseHtml.replace(re/<th>/"<th style='padding:10px;text-align:left;vertical-align:top;border:2px solid #CCC'>");
+            responseHtml = responseHtml.replace(re/<td>/"<td style='padding:10px;border:2px solid #CCC'>");
         }
         replace_inner("#dynamicContent", responseHtml);
         fired {
