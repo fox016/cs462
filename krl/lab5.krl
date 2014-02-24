@@ -40,7 +40,7 @@ ruleset foursquare {
         }
         {
             SquareTag:inject_styling();
-            CloudRain:createLoadPanel("Lab 5 - Foursqare Checkin", {}, checkinDataHtml);
+            CloudRain:createLoadPanel("Lab 5 - Foursquare Checkin", {}, checkinDataHtml);
         }
     }
 }
