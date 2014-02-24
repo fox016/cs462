@@ -12,7 +12,7 @@ ruleset foursquare {
     global {
     }
     rule process_fs_checkin {
-	select when explicit foursquare checkin
+	select when foursquare checkin
 	pre {
 	    venue = event:attr("venue");
 	    city = event:attr("city");
