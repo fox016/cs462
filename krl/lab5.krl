@@ -41,5 +41,8 @@ ruleset foursquare {
             SquareTag:inject_styling();
             CloudRain:createLoadPanel("Lab 5 - Foursquare Checkin", {}, checkinDataHtml);
         }
+	always {
+		set ent:test 1;
+	}
     }
 }
