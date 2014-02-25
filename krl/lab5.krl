@@ -19,7 +19,6 @@ ruleset foursquare {
 	    shout = event:attr("shout");
 	    createdAt = event:attr("createdAt");
 	}
-	noop();
 	fired {
 	    set ent:venue venue;
 	    set ent:city city;
