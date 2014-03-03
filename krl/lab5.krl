@@ -23,10 +23,10 @@ ruleset foursquare {
 			checkinData.pick("$.venue.location.city");
 	    shout = (checkinData eq nil) =>
 			event:attr("shout") |
-			checkinData.pick("$.shout);
+			checkinData.pick("$.shout");
 	    createdAt = (checkinData eq nil) =>
 			event:attr("createdAt") |
-			checkinData.pick("$.createdAt);
+			checkinData.pick("$.createdAt");
 	}
 	always {
 	    set ent:venueName venueName;
