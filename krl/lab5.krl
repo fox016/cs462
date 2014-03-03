@@ -14,20 +14,25 @@ ruleset foursquare {
     rule process_fs_checkin {
 	select when foursquare checkin
 	pre {
-	    city = event:attr("city");
-	    shout = event:attr("shout");
-	    createdAt = event:attr("createdAt");
 	    checkinData = event:attr("checkin").decode();
 	    venuName = (checkinData eq nil) =>
 			event:attr("venueName") |
 			checkinData.pick("$.venue.name");
+	    city = (checkinData eq nil) =>
+			event:attr("city") |
+			checkinData.pick("$.venue.location.city");
+	    shout = (checkinData eq nil) =>
+			event:attr("shout") |
+			checkinData.pick("$.shout);
+	    createdAt = (checkinData eq nil) =>
+			event:attr("createdAt") |
+			checkinData.pick("$.createdAt);
 	}
 	always {
 	    set ent:venueName venueName;
 	    set ent:city city;
 	    set ent:shout shout;
 	    set ent:createdAt createdAt;
-	    set ent:checkin checkin;
 	}
     }
     rule display_checkin is active {
@@ -39,7 +44,6 @@ ruleset foursquare {
 					"<tr><th>City</th><td>" + ent:city + "</td></tr>" +
 					"<tr><th>Shout</th><td>" + ent:shout + "</td></tr>" +
 					"<tr><th>Created At</th><td>" + ent:createdAt + "</td></tr>" +
-					"<tr><th>Checkin</th><td>" + ent:checkin + "</td></tr>" +
 				"</table>";
         }
         {
