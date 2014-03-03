@@ -15,7 +15,7 @@ ruleset foursquare {
 	select when foursquare checkin
 	pre {
 	    checkinData = event:attr("checkin").decode();
-	    venuName = (checkinData eq nil) =>
+	    venueName = (checkinData eq nil) =>
 			event:attr("venueName") |
 			checkinData.pick("$.venue.name");
 	    city = (checkinData eq nil) =>
