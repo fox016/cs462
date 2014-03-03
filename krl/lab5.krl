@@ -14,16 +14,18 @@ ruleset foursquare {
     rule process_fs_checkin {
 	select when foursquare checkin
 	pre {
-	    venue = event:attr("venue");
+	    venueName = event:attr("venueName");
 	    city = event:attr("city");
 	    shout = event:attr("shout");
 	    createdAt = event:attr("createdAt");
+	    checkin = event:attr("checkin");
 	}
 	always {
-	    set ent:venue venue;
+	    set ent:venueName venueName;
 	    set ent:city city;
 	    set ent:shout shout;
 	    set ent:createdAt createdAt;
+	    set ent:checkin checkin;
 	}
     }
     rule display_checkin is active {
@@ -31,10 +33,11 @@ ruleset foursquare {
         pre {
             checkinDataHtml = "" +
 				"<table>" +
-					"<tr><th>Venue</th><td>" + ent:venue + "</td></tr>" +
+					"<tr><th>Venue Name</th><td>" + ent:venueName + "</td></tr>" +
 					"<tr><th>City</th><td>" + ent:city + "</td></tr>" +
 					"<tr><th>Shout</th><td>" + ent:shout + "</td></tr>" +
 					"<tr><th>Created At</th><td>" + ent:createdAt + "</td></tr>" +
+					"<tr><th>Checkin</th><td>" + ent:checkin + "</td></tr>" +
 				"</table>";
         }
         {
