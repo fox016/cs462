@@ -14,11 +14,13 @@ ruleset foursquare {
     rule process_fs_checkin {
 	select when foursquare checkin
 	pre {
-	    venueName = event:attr("venueName");
 	    city = event:attr("city");
 	    shout = event:attr("shout");
 	    createdAt = event:attr("createdAt");
-	    checkin = event:attr("checkin");
+	    checkinData = event:attr("checkin").decode();
+	    venuName = (checkinData eq nil) =>
+			event:attr("venueName") |
+			checkinData.pick("$.venue.name");
 	}
 	always {
 	    set ent:venueName venueName;
