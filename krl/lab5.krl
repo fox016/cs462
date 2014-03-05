@@ -33,6 +33,13 @@ ruleset foursquare {
 	    set ent:city city;
 	    set ent:shout shout;
 	    set ent:createdAt createdAt;
+	    raise explicit event pds:new_location_data
+		with fs_checkin = {
+				"venue": venueName,
+				"city": city,
+				"shout": shout,
+				"createdAt": createdAt
+		};
 	}
     }
     rule display_checkin is active {
