@@ -14,9 +14,9 @@ ruleset examine_location {
 		select when web cloudAppSelected
 		pre {
 			venue = LocationData:get_location_data("venue");
-			venue = LocationData:get_location_data("city");
-			venue = LocationData:get_location_data("shout");
-			venue = LocationData:get_location_data("createdAt");
+			city = LocationData:get_location_data("city");
+			shout = LocationData:get_location_data("shout");
+			createdAt = LocationData:get_location_data("createdAt");
 			checkinDataHtml = "" +
 			"<table>" +
 				"<tr><th>Venue Name</th><td>" + venue+ "</td></tr>" +
