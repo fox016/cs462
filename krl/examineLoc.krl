@@ -13,10 +13,10 @@ ruleset examine_location {
 	rule show_fs_location is active {
 		select when web cloudAppSelected
 		pre {
-			venue = get_location_data("venue");
-			venue = get_location_data("city");
-			venue = get_location_data("shout");
-			venue = get_location_data("createdAt");
+			venue = LocationData:get_location_data("venue");
+			venue = LocationData:get_location_data("city");
+			venue = LocationData:get_location_data("shout");
+			venue = LocationData:get_location_data("createdAt");
 			checkinDataHtml = "" +
 			"<table>" +
 				"<tr><th>Venue Name</th><td>" + venue+ "</td></tr>" +
