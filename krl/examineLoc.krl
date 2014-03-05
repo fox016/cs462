@@ -6,6 +6,8 @@ ruleset examine_location {
 		>>
 		author "Nate Fox"
 		logging off
+		use module a169x701 alias CloudRain
+		use module a41x186  alias SquareTag
 		use module b505195x7 alias LocationData
 	}
 	global {
