@@ -20,7 +20,7 @@ ruleset location_data {
 			value = event:attr("value");
 		}
 		always {
-			set ent:mymap mymap.put([key], value);
+			set ent:mymap ent:mymap.put([key], value);
 		}
 	}
 }
