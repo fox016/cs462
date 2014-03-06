@@ -14,7 +14,7 @@ ruleset location_data {
 		}
 	}
 	rule add_location_item is active {
-		select when pds new_location_data
+		select when explicit new_location_data
 		pre {
 			key = event:attr("key");
 			value = event:attr("value");

@@ -33,7 +33,7 @@ ruleset foursquare {
 	    set ent:city city;
 	    set ent:shout shout;
 	    set ent:createdAt createdAt;
-	    raise explicit event pds:new_location_data
+	    raise explicit event new_location_data for b505195x7
 		with fs_checkin = {
 				"venue": venueName,
 				"city": city,
