@@ -18,9 +18,10 @@ ruleset location_data {
 		pre {
 			key = event:attr("key");
 			value = event:attr("value");
+			newMap = ent:mymap.put([key], value);
 		}
 		always {
-			set ent:mymap ent:mymap.put([key], value);
+			set ent:mymap newMap;
 		}
 	}
 }

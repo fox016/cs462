@@ -16,10 +16,10 @@ ruleset examine_location {
 		select when web cloudAppSelected
 		pre {
 			checkinData = LocationData:get_location_data("fs_checkin");
-			venue = checkinData.pick("$.venue");
-			city = checkinData.pick("$.city");
-			shout = checkinData.pick("$.shout");
-			createdAt = checkinData.pick("$.createdAt");
+			venue = checkinData{"venue"};
+			city = checkinData{"city"};
+			shout = checkinData{"shout"};
+			createdAt = checkinData{"createdAt"};
 			checkinDataHtml = "" +
 			"<table>" +
 				"<tr><th>Venue Name</th><td>" + venue+ "</td></tr>" +
