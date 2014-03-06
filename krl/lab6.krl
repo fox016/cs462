@@ -13,7 +13,7 @@ ruleset location_data {
 			ent:mymap{key};
 		}
 	}
-	rule add_location_item {
+	rule add_location_item is active {
 		select when pds new_location_data
 		pre {
 			key = event:attr("key");
