@@ -15,7 +15,7 @@ ruleset examine_location {
 	rule show_fs_location is active {
 		select when web cloudAppSelected
 		pre {
-			checkinData = LocationData:get_location_data("fs_checkin").decode();
+			checkinData = LocationData:get_location_data("fs_checkin");
 			venue = checkinData.pick("$.venue");
 			city = checkinData.pick("$.city");
 			shout = checkinData.pick("$.shout");
