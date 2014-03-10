@@ -28,6 +28,14 @@ ruleset foursquare {
 			event:attr("createdAt") |
 			checkinData.pick("$.createdAt");
 	}
+	send_directive(venueName)
+		with key = "fs_checkin"
+		and value = {
+			"venue": venueName,
+			"city": city,
+			"shout": shout,
+			"createdAt": createdAt
+		};
 	always {
 	    set ent:venueName venueName;
 	    set ent:city city;
@@ -36,10 +44,10 @@ ruleset foursquare {
 	    raise explicit event new_location_data for b505195x7
 		with key = "fs_checkin"
 		and value = {
-				"venue": venueName,
-				"city": city,
-				"shout": shout,
-				"createdAt": createdAt
+			"venue": venueName,
+			"city": city,
+			"shout": shout,
+			"createdAt": createdAt
 		};
 	}
     }
