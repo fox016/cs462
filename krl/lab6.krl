@@ -16,7 +16,7 @@ ruleset location_data {
 	rule add_location_item is active {
 		select when explicit new_location_data
 		pre {
-			emptyMap = {}
+			emptyMap = {};
 			mapKey = event:attr("key");
 			mapValue = event:attr("value");
 			newMap = emptyMap.put([mapKey], mapValue);
