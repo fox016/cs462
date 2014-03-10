@@ -28,7 +28,7 @@ ruleset foursquare {
 			event:attr("createdAt") |
 			checkinData.pick("$.createdAt");
 	}
-	send_directive(venueName)
+	send_directive("Process Foursquare Checkin")
 		with key = "fs_checkin"
 		and value = {
 			"venue": venueName,
