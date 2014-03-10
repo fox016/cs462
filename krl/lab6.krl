@@ -16,9 +16,10 @@ ruleset location_data {
 	rule add_location_item is active {
 		select when explicit new_location_data
 		pre {
+			emptyMap = {}
 			mapKey = event:attr("key");
 			mapValue = event:attr("value");
-			newMap = ent:mymap.put([mapKey], mapValue);
+			newMap = emptyMap.put([mapKey], mapValue);
 		}
 		send_directive("Add Location Item")
 			with map = newMap;
