@@ -18,7 +18,7 @@ ruleset location_data {
 		pre {
 			mapKey = event:attr("key");
 			mapValue = event:attr("value");
-			newMap = ent:mymap.put([mapKey], mapValue);
+			newMap = {}.put(mapKey, mapValue);
 		}
 		send_directive("Add Location Item")
 			with map = newMap;
