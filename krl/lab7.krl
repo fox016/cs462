@@ -42,7 +42,5 @@ ruleset location_distance {
 		send_directive("Current Location Test")
 			with latitude = currentLatitude
 			and longitude = currentLongitude;
-		always {
-		}
 	}
 }
