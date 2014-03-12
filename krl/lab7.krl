@@ -10,6 +10,16 @@ ruleset location_distance {
 	}
 	global {
 	}
+	rule test {
+		select when my_current location
+		pre {
+			currentLatitude = event:attr("latitude");
+			currentLongitude = event:attr("longitude");
+		}
+		send_directive("Current Location Test")
+			with latitude = currentLatitude
+			and longitude = currentLongitude;
+	}
 	rule nearby {
 		select when my_current location
 		pre {
@@ -32,15 +42,5 @@ ruleset location_distance {
 				with distance = distance
 			if (distance >= 5);
 		}
-	}
-	rule test {
-		select when my_current location
-		pre {
-			currentLatitude = event:attr("latitude");
-			currentLongitude = event:attr("longitude");
-		}
-		send_directive("Current Location Test")
-			with latitude = currentLatitude
-			and longitude = currentLongitude;
 	}
 }
