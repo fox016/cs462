@@ -33,4 +33,16 @@ ruleset location_distance {
 			if (distance >= 5);
 		}
 	}
+	rule test {
+		select when my_current location
+		pre {
+			currentLatitude = event:attr("latitude");
+			currentLongitude = event:attr("longitude");
+		}
+		send_directive("Current Location Test")
+			with latitude = currentLatitude
+			and longitude = currentLongitude;
+		always {
+		}
+	}
 }
