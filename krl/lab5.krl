@@ -27,6 +27,12 @@ ruleset foursquare {
 	    createdAt = (checkinData eq nil) =>
 			event:attr("createdAt") |
 			checkinData.pick("$.createdAt");
+	    latitude = (checkinData eq nil) =>
+			event:attr("latitude") |
+			checkinData.pick("$.venue.location.lat");
+	    longitude = (checkinData eq nil) =>
+			event:attr("longitude") |
+			checkinData.pick("$.venue.location.lng");
 	}
 	send_directive("Process Foursquare Checkin")
 		with key = "fs_checkin"
@@ -34,20 +40,26 @@ ruleset foursquare {
 			"venue": venueName,
 			"city": city,
 			"shout": shout,
-			"createdAt": createdAt
+			"createdAt": createdAt,
+			"longitude": longitude,
+			"latitude": latitude
 		};
 	always {
 	    set ent:venueName venueName;
 	    set ent:city city;
 	    set ent:shout shout;
 	    set ent:createdAt createdAt;
+	    set ent:longitude longitude;
+	    set ent:latitude latitude;
 	    raise explicit event new_location_data for b505195x7
 		with key = "fs_checkin"
 		and value = {
 			"venue": venueName,
 			"city": city,
 			"shout": shout,
-			"createdAt": createdAt
+			"createdAt": createdAt,
+			"longitude": longitude,
+			"latitude": latitude
 		};
 	}
     }
@@ -60,6 +72,8 @@ ruleset foursquare {
 					"<tr><th>City</th><td>" + ent:city + "</td></tr>" +
 					"<tr><th>Shout</th><td>" + ent:shout + "</td></tr>" +
 					"<tr><th>Created At</th><td>" + ent:createdAt + "</td></tr>" +
+					"<tr><th>Latitude</th><td>" + ent:latitude + "</td></tr>" +
+					"<tr><th>Longitude</th><td>" + ent:longitude + "</td></tr>" +
 				"</table>";
         }
         {
