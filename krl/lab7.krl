@@ -11,7 +11,7 @@ ruleset location_distance {
 	global {
 	}
 	rule nearby {
-		select when current location
+		select when my_current location
 		pre {
 			checkinData = LocationData:get_location_data("fs_checkin");
 			fsLatitude = checkinData{"latitude"};
