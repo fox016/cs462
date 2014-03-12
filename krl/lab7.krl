@@ -11,7 +11,7 @@ ruleset location_distance {
 	global {
 	}
 	rule test {
-		select when my_current location
+		select when mycurrent location
 		pre {
 			currentLatitude = event:attr("latitude");
 			currentLongitude = event:attr("longitude");
