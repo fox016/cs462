@@ -20,12 +20,16 @@ ruleset examine_location {
 			city = checkinData{"city"};
 			shout = checkinData{"shout"};
 			createdAt = checkinData{"createdAt"};
+			latitude = checkinData{"latitude"};
+			longitude = checkinData{"longitude"};
 			checkinDataHtml = "" +
 			"<table>" +
 				"<tr><th>Venue Name</th><td>" + venue+ "</td></tr>" +
 				"<tr><th>City</th><td>" + city + "</td></tr>" +
 				"<tr><th>Shout</th><td>" + shout + "</td></tr>" +
 				"<tr><th>Created At</th><td>" + createdAt + "</td></tr>" +
+				"<tr><th>Latitude</th><td>" + latitude + "</td></tr>" +
+				"<tr><th>Longitude</th><td>" + longitude + "</td></tr>" +
 			"</table>";
 		}
 		{
