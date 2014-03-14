@@ -5,6 +5,10 @@ ruleset location_data {
 			Event Network Exercises
 		>>
 		author "Nate Fox"
+		key twillio {
+			"account_sid" : "ACea96d6c53aec97a80594ab3163f9149e",
+			"auth_token" : "eb4d4b5dc8d9397aefef74a17a9cde79"
+		}
 		logging off
 		provides get_location_data
 	}
@@ -30,8 +34,12 @@ ruleset location_data {
 		select when explicit location_nearby
 		pre {
 			distance = event:attr("distance");
+			message = "Distance: " + distance;
 		}
-		send_directive("Location Nearby")
-			with distance = distance;
+		{
+			send_directive("Location Nearby")
+				with message = message;
+			twilio:sms(message);
+		}
 	}
 }
