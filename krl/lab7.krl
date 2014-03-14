@@ -27,10 +27,10 @@ ruleset MyLocationDistance {
 			and currentLongitude = currentLongitude
                         and distance = distance;
                 always {
-                        raise explicit event location_nearby
+                        raise explicit event location_nearby for b505195x7
                                 with distance = distance
                         if (distance < 5);
-                        raise explicit event location_far
+                        raise explicit event location_far for b505195x7
                                 with distance = distance
                         if (distance >= 5);
                 }

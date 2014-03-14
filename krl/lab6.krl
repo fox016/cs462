@@ -26,4 +26,12 @@ ruleset location_data {
 			set ent:mymap newMap;
 		}
 	}
+	rule text_when_near {
+		select when explicit location_nearby
+		pre {
+			distance = event:attr("distance");
+		}
+		send_directive("Location Nearby")
+			with distance = distance;
+	}
 }
