@@ -5,7 +5,7 @@ ruleset location_data {
 			Event Network Exercises
 		>>
 		author "Nate Fox"
-		key twillio {
+		key twilio {
 			"account_sid" : "ACea96d6c53aec97a80594ab3163f9149e",
 			"auth_token" : "eb4d4b5dc8d9397aefef74a17a9cde79"
 		}
