@@ -21,7 +21,11 @@ ruleset MyLocationDistance {
                         distance = math:great_circle_distance(fsLongitude, halfPi - fsLatitude, currentLongitude, halfPi - currentLatitude, earthRadius);
 		}
                 send_directive("Current Location")
-                        with distance = distance;
+			with checkinLatitude = fsLatitude
+			and checkinLongitude = fsLongitude
+			and currentLatitude = currentLatitude
+			and currentLongitude = currentLongitude
+                        and distance = distance;
                 always {
                         raise explicit event location_nearby
                                 with distance = distance
