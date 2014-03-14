@@ -1,24 +1,34 @@
-ruleset mylocationdistance {
+ruleset MyLocationDistance {
 	meta {
 		name "Lab 7 - Semantic Translation"
 		description "Lab 7"
 		author "Nate Fox"
 		logging off
+                use module b505195x7 alias LocationData
 	}
 	global {
 	}
-	rule process_my_current_location {
+	rule nearby {
 		select when mycurrent mylocation
 		pre {
-			currentLatitude = event:attr("latitude");
-			currentLongitude = event:attr("longitude");
+                        checkinData = LocationData:get_location_data("fs_checkin");
+                        fsLatitude = checkinData{"latitude"};
+                        fsLongitude = checkinData{"longitude"};
+                        currentLatitude = event:attr("latitude");
+                        currentLongitude = event:attr("longitude");
+                        halfPi = math:pi()/2;
+                        earthRadius = 6378;
+                        distance = math:great_circle_distance(fsLongitude, halfPi - fsLatitude, currentLongitude, halfPi - currentLatitude, earthRadius);
 		}
-		send_directive("Current Location Test")
-			with latitude = currentLatitude
-			and longitude = currentLongitude;
-		always {
-			set ent:mylat currentLatitude;
-			set ent:mylong currentLongitude;
-		}
-	}
+                send_directive("Current Location")
+                        with distance = distance;
+                always {
+                        raise explicit event location_nearby
+                                with distance = distance
+                        if (distance < 5);
+                        raise explicit event location_far
+                                with distance = distance
+                        if (distance >= 5);
+                }
+        }
 }
