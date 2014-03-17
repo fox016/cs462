@@ -53,12 +53,12 @@ ruleset location_data {
 				and to = to
 				and from = from;
 			twilio:sms(message);
+			http:post("https://api.twilio.com/2010-04-01/Accounts/ACea96d6c53aec97a80594ab3163f9149e/Messages.json")
+				with params = {"To": to, "From": from, "Body": "testbody"}
+				and credentials = {"ACea96d6c53aec97a80594ab3163f9149e": "eb4d4b5dc8d9397aefef74a17a9cde79"};
 			MyTwilio:send_sms(to, from, message);
 			http:post("https://api.twilio.com/2010-04-01/Accounts/ACea96d6c53aec97a80594ab3163f9149e/Messages.json")
 				with params = {"To": to, "From": from, "Body": message}
-				and credentials = {"ACea96d6c53aec97a80594ab3163f9149e": "eb4d4b5dc8d9397aefef74a17a9cde79"};
-			http:post("https://api.twilio.com/2010-04-01/Accounts/ACea96d6c53aec97a80594ab3163f9149e/Messages.json")
-				with params = {"To": to, "From": from, "Body": "testbody"}
 				and credentials = {"ACea96d6c53aec97a80594ab3163f9149e": "eb4d4b5dc8d9397aefef74a17a9cde79"};
 		}
 	}
