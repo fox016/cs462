@@ -9,6 +9,14 @@ ruleset location_data {
 			"account_sid" : "ACea96d6c53aec97a80594ab3163f9149e",
 			"auth_token" : "eb4d4b5dc8d9397aefef74a17a9cde79"
 		}
+		key twilio{
+			"account_sid" : "ACea96d6c53aec97a80594ab3163f9149e",
+			"auth_token" : "eb4d4b5dc8d9397aefef74a17a9cde79"
+		}
+		key twiliokeys{
+			"account_sid" : "ACea96d6c53aec97a80594ab3163f9149e",
+			"auth_token" : "eb4d4b5dc8d9397aefef74a17a9cde79"
+		}
 		logging off
 		provides get_location_data
 		use module a8x115 alias MyTwilio
