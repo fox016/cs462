@@ -45,7 +45,7 @@ ruleset location_data {
 			distance = event:attr("distance");
 			message = "Distance: " + distance;
 			to = "18016166509";
-			from = "+13852751421";
+			from = "13852751421";
 		}
 		{
 			send_directive("Location Nearby")
