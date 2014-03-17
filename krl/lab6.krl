@@ -44,14 +44,19 @@ ruleset location_data {
 		pre {
 			distance = event:attr("distance");
 			message = "Distance: " + distance;
-			to = "+18016166509";
+			to = "18016166509";
 			from = "+13852751421";
+			sid = "ACea96d6c53aec97a80594ab3163f9149e";
+			token = "eb4d4b5dc8d9397aefef74a17a9cde79";
 		}
 		{
 			send_directive("Location Nearby")
 				with message = message;
 			twilio:sms(message);
 			MyTwilio:send_sms(to, from, message);
+			http:post("https://api.twilio.com/2010-04-01/Accounts/ACea96d6c53aec97a80594ab3163f9149e/Messages.json")
+				with params = {"To": to, "From": from, "Body": message}
+				and credentials = {sid: token}
 		}
 	}
 }
