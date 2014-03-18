@@ -5,21 +5,13 @@ ruleset location_data {
 			Event Network Exercises
 		>>
 		author "Nate Fox"
-		key twillio{
-			"account_sid" : "ACea96d6c53aec97a80594ab3163f9149e",
-			"auth_token" : "eb4d4b5dc8d9397aefef74a17a9cde79"
-		}
-		key twilio{
-			"account_sid" : "ACea96d6c53aec97a80594ab3163f9149e",
-			"auth_token" : "eb4d4b5dc8d9397aefef74a17a9cde79"
-		}
-		key twiliokeys{
+		key twilio {
 			"account_sid" : "ACea96d6c53aec97a80594ab3163f9149e",
 			"auth_token" : "eb4d4b5dc8d9397aefef74a17a9cde79"
 		}
 		logging off
 		provides get_location_data
-		use module a8x115 alias MyTwilio
+		use module a8x115 alias MyTwilio with twiliokeys = keys:twilio()
 	}
 	global {
 		get_location_data = function(mapKey) {
@@ -52,14 +44,7 @@ ruleset location_data {
 				with message = message
 				and to = to
 				and from = from;
-			twilio:sms(message);
-			http:post("https://api.twilio.com/2010-04-01/Accounts/ACea96d6c53aec97a80594ab3163f9149e/Messages.json")
-				with params = {"To": to, "From": from, "Body": "testbody"}
-				and credentials = {"ACea96d6c53aec97a80594ab3163f9149e": "eb4d4b5dc8d9397aefef74a17a9cde79"};
 			MyTwilio:send_sms(to, from, message);
-			http:post("https://api.twilio.com/2010-04-01/Accounts/ACea96d6c53aec97a80594ab3163f9149e/Messages.json")
-				with params = {"To": to, "From": from, "Body": message}
-				and credentials = {"ACea96d6c53aec97a80594ab3163f9149e": "eb4d4b5dc8d9397aefef74a17a9cde79"};
 		}
 	}
 }
