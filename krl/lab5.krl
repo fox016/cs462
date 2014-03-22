@@ -16,6 +16,16 @@ ruleset foursquare {
     		"ec2":"671DAFC2-B1FE-11E3-884D-1541293232C8"
     	};
     }
+    rule dispatcher_rule {
+    	select when foursquare checkin
+    		foreach locationSubMap setting (n,v)
+    	pre {
+    		checkinJson = event:attr("checkin");
+    	}
+    	event:send(locationSubMap, "location", "notification")
+    		with attrs = {"checkin": checkinJson}
+    		and cid_key = n;
+    }
     rule process_fs_checkin {
 	select when foursquare checkin
 	pre {
