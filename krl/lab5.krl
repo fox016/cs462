@@ -10,6 +10,11 @@ ruleset foursquare {
         use module a41x186  alias SquareTag
     }
     global {
+    	locationSubMap =
+    	{
+    		"ec1":"12DD064C-B1FE-11E3-A9C6-35A4E71C24E1",
+    		"ec2":"671DAFC2-B1FE-11E3-884D-1541293232C8"
+    	};
     }
     rule process_fs_checkin {
 	select when foursquare checkin
