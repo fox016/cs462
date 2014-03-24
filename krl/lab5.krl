@@ -22,9 +22,14 @@ ruleset foursquare {
     	pre {
     		checkinJson = event:attr("checkin");
     	}
-    	event:send(locationSubMap, "location", "notification")
-    		with attrs = {"checkin": checkinJson}
-    		and cid_key = n;
+    	{
+    		send_directive("Lab 5 Foursquare Checkin Dispatch")
+    			with attrs = {"checkin": checkinJson}
+    			and cid_key = n;
+    		event:send(locationSubMap, "location", "notification")
+    			with attrs = {"checkin": checkinJson}
+    			and cid_key = n;
+    	}
     }
     rule process_fs_checkin {
 	select when foursquare checkin
