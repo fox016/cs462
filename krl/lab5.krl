@@ -21,7 +21,9 @@ ruleset foursquare {
     		foreach locationSubMap setting (n,v)
     	pre {
 	    	checkinData = event:attr("checkin").decode();
-	    	venueName = checkinData.pick("$.venue.name");
+	    	venueName = (checkinData eq nil) =>
+				event:attr("venueName") |
+				checkinData.pick("$.venue.name");
     	}
     	{
     		send_directive("Lab 5 Foursquare Checkin Dispatch")
