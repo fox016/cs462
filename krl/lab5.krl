@@ -20,14 +20,15 @@ ruleset foursquare {
     	select when foursquare checkin
     		foreach locationSubMap setting (n,v)
     	pre {
-    		checkinJson = event:attr("checkin");
+	    	checkinData = event:attr("checkin").decode();
+	    	venueName = checkinData.pick("$.venue.name");
     	}
     	{
     		send_directive("Lab 5 Foursquare Checkin Dispatch")
-    			with attrs = {"checkin": checkinJson}
+    			with attrs = {"checkin": venueName}
     			and cid_key = n;
     		event:send(locationSubMap, "location", "notification")
-    			with attrs = {"checkin": checkinJson}
+    			with attrs = {"checkin": venueName}
     			and cid_key = n;
     	}
     }
