@@ -13,18 +13,28 @@ ruleset Lab_8 {
   rule location_catch {
 	select when location notification
 	pre {
-		checkinData = event:attr("checkin");
+		venue = event:attr("venue");
+		city = event:attr("city");
+		latitude = event:attr("latitude");
+		longitude = event:attr("longitude");
 	}
-	send_directive("Lab 8 Location Catch")
-		with checkin = checkinData;
 	always {
-		set ent:checkinData checkinData;
+		set ent:venue venue;
+		set ent:city city;
+		set ent:latitude latitude;
+		set ent:longitude longitude;
 	}
   }
   rule display_checkin is active {
 	select when web cloudAppSelected
 	pre {
-		checkinDataHtml = ent:checkinData;
+            checkinDataHtml = "" +
+				"<table>" +
+					"<tr><th>Venue Name</th><td>" + ent:venue+ "</td></tr>" +
+					"<tr><th>City</th><td>" + ent:city + "</td></tr>" +
+					"<tr><th>Latitude</th><td>" + ent:latitude + "</td></tr>" +
+					"<tr><th>Longitude</th><td>" + ent:longitude + "</td></tr>" +
+				"</table>";
 	}
     	{
 		SquareTag:inject_styling();

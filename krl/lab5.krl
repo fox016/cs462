@@ -24,13 +24,32 @@ ruleset foursquare {
 	    	venueName = (checkinData eq nil) =>
 				event:attr("venueName") |
 				checkinData.pick("$.venue.name");
+		city = (checkinData eq nil) =>
+				event:attr("city") |
+				checkinData.pick("$.venue.location.city");
+		latitude = (checkinData eq nil) =>
+				event:attr("latitude") |
+				checkinData.pick("$.venue.location.lat");
+		longitude = (checkinData eq nil) =>
+				event:attr("longitude") |
+				checkinData.pick("$.venue.location.lng");
     	}
     	{
     		send_directive("Lab 5 Foursquare Checkin Dispatch")
-    			with attrs = {"checkin": venueName}
+    			with attrs = {
+					"venue": venueName,
+					"city": city,
+					"latitude": latitude,
+					"longitude": longitude
+			}
     			and cid_key = n;
     		event:send(locationSubMap, "location", "notification")
-    			with attrs = {"checkin": venueName}
+    			with attrs = {
+					"venue": venueName,
+					"city": city,
+					"latitude": latitude,
+					"longitude": longitude
+			}
     			and cid_key = n;
     	}
     }
