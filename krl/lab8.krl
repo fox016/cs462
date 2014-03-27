@@ -30,7 +30,7 @@ ruleset Lab_8 {
 	pre {
             checkinDataHtml = "" +
 				"<table>" +
-					"<tr><th>Venue Name</th><td>" + ent:venue+ "</td></tr>" +
+					"<tr><th>Venue</th><td>" + ent:venue+ "</td></tr>" +
 					"<tr><th>City</th><td>" + ent:city + "</td></tr>" +
 					"<tr><th>Latitude</th><td>" + ent:latitude + "</td></tr>" +
 					"<tr><th>Longitude</th><td>" + ent:longitude + "</td></tr>" +
